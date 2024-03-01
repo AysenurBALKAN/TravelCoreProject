@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TDataAccesLayer.Concrete;
 using TEntityLayer.Concrete;
+using TravelCoreProject.Models;
 
 namespace TravelCoreProject
 {
@@ -28,7 +29,7 @@ namespace TravelCoreProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>();
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews();
 
 
