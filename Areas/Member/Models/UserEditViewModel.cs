@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +15,8 @@ namespace TravelCoreProject.Areas.Member.Models
         public string phonenumber { get; set; }
         public string mail { get; set; }
         public string imageURL { get; set; }
-      
+        public IFormFile Image { get; set; }
+
 
     }
 }
