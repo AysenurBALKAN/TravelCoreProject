@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,14 @@ namespace TravelCoreProject.Areas.Member.Controllers
     {
         DestinationManager destinationManager = new DestinationManager(new EfDestinationDal());
         ReservationManager reservationManager = new ReservationManager(new EfReservationDal());
+
+        private readonly UserManager<AppUser> _usermanager;
+
+        public ReservationController(UserManager<AppUser> usermanager)
+        {
+            _usermanager = usermanager;
+        }
+
         public IActionResult MyCurrentResevation()
         {
             return View();
@@ -24,6 +33,15 @@ namespace TravelCoreProject.Areas.Member.Controllers
         public IActionResult MyOldReservation()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async  Task<IActionResult> MyApprovalReservation()
+        {
+            var values = _usermanager.FindByNameAsync(User.Identity.Name);
+           var valuesList= reservationManager.GetListApprovalReservation(values.Id);
+
+            return View(valuesList);
         }
 
         [HttpGet]
