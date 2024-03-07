@@ -26,20 +26,26 @@ namespace TravelCoreProject.Areas.Member.Controllers
             _usermanager = usermanager;
         }
 
-        public IActionResult MyCurrentResevation()
+        public async Task< IActionResult> MyCurrentResevation()
         {
-            return View();
+            var values = _usermanager.FindByNameAsync(User.Identity.Name);
+            var valuesList = reservationManager.GetListWithReservationByWaitApproval(values.Id);
+
+            return View(valuesList);
         }
-        public IActionResult MyOldReservation()
+        public async Task<IActionResult> MyOldReservation()
         {
-            return View();
+            var values = _usermanager.FindByNameAsync(User.Identity.Name);
+            var valuesList = reservationManager.GetListWithReservationByWaitApproval(values.Id);
+
+            return View(valuesList);
         }
 
         [HttpGet]
         public async  Task<IActionResult> MyApprovalReservation()
         {
             var values = _usermanager.FindByNameAsync(User.Identity.Name);
-           var valuesList= reservationManager.GetListApprovalReservation(values.Id);
+           var valuesList= reservationManager.GetListWithReservationByWaitApproval(values.Id);
 
             return View(valuesList);
         }
