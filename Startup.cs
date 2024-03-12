@@ -10,7 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TBusinessLayer.Abstract;
+using TBusinessLayer.Concrete;
+using TDataAccesLayer.Abstract;
 using TDataAccesLayer.Concrete;
+using TDataAccesLayer.EntityFramework;
 using TEntityLayer.Concrete;
 using TravelCoreProject.Models;
 
@@ -30,6 +34,8 @@ namespace TravelCoreProject
         {
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
+            services.AddScoped<ICommentService, CommentManager>();
+            services.AddScoped<ICommentDal, EfComment>();
             services.AddControllersWithViews();
 
 

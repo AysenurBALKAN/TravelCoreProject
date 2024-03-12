@@ -1,0 +1,25 @@
+﻿@using TEntityLayer.Concrete
+@model List<Comment> 
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <th>Kullanıcı</th>
+        <th>Rota</th>
+        <th>Tarih</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>@item.CommentId</tr>
+        <tr>@item.CommentUser</tr>
+        <tr>@item.Destination.City</tr>
+        <tr>@(((DateTime)item.CommentDate).ToString("dd-MM-yyyy"))</tr>
+        <tr><a href="/Admin/Comment/DeleteComment/@item.CommentId" class="btn btn-outline-danger">Sil</a></tr>
+    }
+</table>
+
