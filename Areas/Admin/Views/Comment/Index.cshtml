@@ -15,11 +15,12 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr>@item.CommentId</tr>
-        <tr>@item.CommentUser</tr>
-        <tr>@item.Destination.City</tr>
-        <tr>@(((DateTime)item.CommentDate).ToString("dd-MM-yyyy"))</tr>
-        <tr><a href="/Admin/Comment/DeleteComment/@item.CommentId" class="btn btn-outline-danger">Sil</a></tr>
+        <tr>
+            <td>@item.CommentId</td>
+            <td> @item.CommentUser</td> 
+        <td> @item.Destination.City</td>
+        <td>@(((DateTime)item.CommentDate).ToString("dd-MM-yyyy"))</td>
+        <a href="/Admin/Comment/DeleteComment/@item.CommentId" class="btn btn-outline-danger">Sil</a></tr>
     }
 </table>
 

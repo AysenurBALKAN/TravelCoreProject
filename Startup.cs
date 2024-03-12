@@ -35,7 +35,11 @@ namespace TravelCoreProject
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
             services.AddScoped<ICommentService, CommentManager>();
-            services.AddScoped<ICommentDal, EfComment>();
+            services.AddScoped<ICommentDal, EfComment>(); 
+            services.AddScoped<IDestinationService, DestinationManager>();
+            services.AddScoped<IDestinationDal, EfDestinationDal>(); 
+            services.AddScoped<IAppUserService, AppUserManager>();
+            services.AddScoped<IAppUserDal, EfAppUserDal>();
             services.AddControllersWithViews();
 
 
