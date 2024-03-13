@@ -12,10 +12,11 @@ namespace TravelCoreProject.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly IAppUserService _appUserService;
-
-        public UserController(IAppUserService appUserService)
+        private readonly IReservatonService _reservatonService;
+        public UserController(IAppUserService appUserService,IReservatonService reservatonService)
         {
             _appUserService = appUserService;
+            _reservatonService = reservatonService;
         }
 
         public IActionResult Index()
@@ -56,9 +57,8 @@ namespace TravelCoreProject.Areas.Admin.Controllers
         }
         public IActionResult ReservationUser(int id)
         {
-
-            _appUserService.TGetlist();
-            return View();
+            var values = _reservatonService.GetListWithReservationByAccepted(id);
+            return View(values);
         }
     }
 }

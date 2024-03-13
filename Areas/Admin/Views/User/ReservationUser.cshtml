@@ -1,0 +1,31 @@
+﻿@using TEntityLayer.Concrete
+@model List<Reservation>
+@{
+    ViewData["Title"] = "ReservationUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Kullanıcının Geçmiş Rezervasyonları</h1>
+
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <th>Ad-Soyad</th>
+        <th>Rota</th>
+        <th>Kişi Sayısı</th>
+        <th>Tarih</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+          
+            <td>@item.AppUserId</td>
+            <td>@item.AppUser.Name @item.AppUser.Surname</td>
+            <td>@item.Destination.City</td>
+            <td>@item.PersonCount</td>
+            <td>@item.ReservationDate</td>
+            <td> <a href="/Admin/User/ReservationUser/@item.AppUserId" class="btn btn-outline-danger">Detaylar</a></td>
+        </tr>
+    }
+</table>
