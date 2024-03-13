@@ -20,11 +20,21 @@ namespace TravelCoreProject.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Index Sayfası Çağırıldı.");
             return View();
         }
 
         public IActionResult Privacy()
         {
+            _logger.LogInformation("Privacy Sayfası Çağırıldı.");
+            _logger.LogError("Error Log Çağırıldı.");
+            return View();
+        }
+
+        public IActionResult Test()
+        {
+            DateTime d = Convert.ToDateTime(DateTime.Now.ToLongDateString());
+            _logger.LogInformation(d+"Test Sayfası Çağırıldı.");
             return View();
         }
 
