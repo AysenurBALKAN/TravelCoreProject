@@ -20,7 +20,8 @@
             <td> @item.CommentUser</td> 
         <td> @item.Destination.City</td>
         <td>@(((DateTime)item.CommentDate).ToString("dd-MM-yyyy"))</td>
-        <a href="/Admin/Comment/DeleteComment/@item.CommentId" class="btn btn-outline-danger">Sil</a></tr>
+        <td> <a href="/Admin/Comment/DeleteComment/@item.CommentId" class="btn btn-outline-danger">Sil</a></td>
+        </tr>
     }
 </table>
 
