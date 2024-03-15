@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using TBusinessLayer.Abstract;
 using TDataAccesLayer.Concrete;
 using TravelCoreProject.Models;
 
@@ -13,6 +14,13 @@ namespace TravelCoreProject.Controllers
 {
     public class ExcelController : Controller
     {
+        private readonly IExcelService _excelService;
+
+        public ExcelController(IExcelService excelService)
+        {
+            _excelService = excelService;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -36,20 +44,8 @@ namespace TravelCoreProject.Controllers
         public IActionResult StaticExcelReport()
         {
 
-            ExcelPackage excel = new ExcelPackage();
-            var worksheet = excel.Workbook.Worksheets.Add("Sayfa1");
-            worksheet.Cells[1, 1].Value = "Rota";
-            worksheet.Cells[1, 2].Value = "Rehber";
-            worksheet.Cells[1, 3].Value = "Kontenjan";
-
-
-            worksheet.Cells[2, 1].Value = "Gürcistan Batum";
-            worksheet.Cells[2, 2].Value = "Kadir Yıldız";
-            worksheet.Cells[2, 3].Value = "12";
-
-            var bytes = excel.GetAsByteArray();
-
-            return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "dosya1.xlsx");
+            return File(_excelService.ExcelList(DestinationModel()), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "yeni.xlsx");
+            //application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "dosya1.xlsx
         }
         public IActionResult DestinationExcelReport()
         {

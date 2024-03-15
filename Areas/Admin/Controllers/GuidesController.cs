@@ -12,6 +12,7 @@ using TEntityLayer.Concrete;
 namespace TravelCoreProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("Admin/[controller]/[action]/{id?}")]
     public class GuidesController : Controller
     {
         private readonly IGuideService _guideService;
@@ -20,20 +21,21 @@ namespace TravelCoreProject.Areas.Admin.Controllers
         {
             _guideService = guideService;
         }
-
+       
         public IActionResult Index()
         {
            var values= _guideService.TGetlist();
             return View(values);
         }
 
+       
         [HttpGet]
         public IActionResult AddGuide()
         {
             
             return View();
         }
-
+      
         [HttpPost]
         public IActionResult AddGuide(Guide guide)
         {
@@ -54,7 +56,7 @@ namespace TravelCoreProject.Areas.Admin.Controllers
             }
             
         }
-
+       
         [HttpGet]
         public IActionResult EditGuide(int id)
         {
@@ -62,7 +64,7 @@ namespace TravelCoreProject.Areas.Admin.Controllers
             return View(values);
         }
 
-
+        
         [HttpPost]
         public IActionResult EditGuide(Guide guide)
         {
@@ -70,13 +72,18 @@ namespace TravelCoreProject.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ChangetoTrue()
+     
+        public IActionResult ChangetoTrue(int id)
         {
-            return RedirectToAction("Index");
+            _guideService.TChangetoTrue(id);
+            return RedirectToAction("Index","Guides",new {area="Admin" });
         }
-        public IActionResult ChangetoFalse()
+
+       
+        public IActionResult ChangetoFalse(int id)
         {
-            return RedirectToAction("Index");
+            _guideService.TChangetoFalse(id);
+            return RedirectToAction("Index", "Guides", new { area = "Admin" });
         }
     }
 }

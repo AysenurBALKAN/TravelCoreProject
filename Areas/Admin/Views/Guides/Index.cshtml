@@ -24,15 +24,15 @@
     
         @{       if (item.Status == true)
             {
-                <td><a href="#" class="btn btn-outline-danger">Pasif Yap</a></td>
+                <td><a href="/Admin/Guides/ChangetoFalse/@item.GuideId" class="btn btn-outline-danger">Pasif Yap</a></td>
             }
                 else
                 {
-                    <td><a href="#" class="btn btn-outline-success">Aktif Yap</a></td>
+                    <td><a href="/Admin/Guides/ChangetoTrue/@item.GuideId" class="btn btn-outline-success">Aktif Yap</a></td>
                 }
         }
     
-    <td><a href="#" class="btn btn-outline-primary">Düzenle</a></td>
+    <td><a href="/Admin/Guides/EditGuide/" class="btn btn-outline-primary">Düzenle</a></td>
 </tr>
     }
 </table>
