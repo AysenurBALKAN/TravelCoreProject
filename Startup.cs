@@ -1,3 +1,6 @@
+using DTOLayer.DTOs.AnnouncementDTOs;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +18,7 @@ using System.Threading.Tasks;
 using TBusinessLayer.Abstract;
 using TBusinessLayer.Concrete;
 using TBusinessLayer.Container;
+using TBusinessLayer.ValidationRules;
 using TDataAccesLayer.Abstract;
 using TDataAccesLayer.Concrete;
 using TDataAccesLayer.EntityFramework;
@@ -44,8 +48,10 @@ namespace TravelCoreProject
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
             services.ContaninerDependencies();
-            services.AddControllersWithViews();
 
+            services.AddAutoMapper(typeof(Startup));
+            services.AddTransient<IValidator<AnnouncementAddDTO>, AnnouncementValidator > ();
+            services.AddControllersWithViews().AddFluentValidation();
 
 
             services.AddMvc(config =>
