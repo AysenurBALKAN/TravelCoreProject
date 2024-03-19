@@ -1,27 +1,14 @@
-using DTOLayer.DTOs.AnnouncementDTOs;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using TBusinessLayer.Abstract;
-using TBusinessLayer.Concrete;
 using TBusinessLayer.Container;
-using TBusinessLayer.ValidationRules;
-using TDataAccesLayer.Abstract;
 using TDataAccesLayer.Concrete;
-using TDataAccesLayer.EntityFramework;
 using TEntityLayer.Concrete;
 using TravelCoreProject.Models;
 
@@ -50,7 +37,7 @@ namespace TravelCoreProject
             services.ContaninerDependencies();
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddTransient<IValidator<AnnouncementAddDTO>, AnnouncementValidator > ();
+            services.CustomValidator();
             services.AddControllersWithViews().AddFluentValidation();
 
 
