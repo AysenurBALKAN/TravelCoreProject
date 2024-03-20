@@ -1,0 +1,26 @@
+﻿@model VisitorViewModel
+@{
+    ViewData["Title"] = "UpdateVisitor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Ziyaretçi Güncelleme</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="VisitorId" />
+    <label>Ziyaretci Adı</label>
+    <input type="text" asp-for="Name" class="form-control" />
+    <br />
+    <label>Ziyaretci Soyadı</label>
+    <input type="text" asp-for="SurName" class="form-control" />
+    <br />
+    <label>Ziyaretci Şehir</label>
+    <input type="text" asp-for="City" class="form-control" />
+    <br />
+    <label>Ziyaretci Ülke</label>
+    <input type="text" asp-for="Country" class="form-control" />
+    <br />
+    <label>Ziyaretci Mail</label>
+    <input type="text" asp-for="Mail" class="form-control" />
+    <button class="btn btn-outline-success">Ziyaretçi Güncelle</button>
+</form>

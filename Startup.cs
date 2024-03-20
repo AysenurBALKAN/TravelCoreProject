@@ -34,6 +34,7 @@ namespace TravelCoreProject
                 });
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
+            services.AddHttpClient();
             services.ContaninerDependencies();
 
             services.AddAutoMapper(typeof(Startup));
