@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using TBusinessLayer.Container;
 using TDataAccesLayer.Concrete;
 using TEntityLayer.Concrete;
+using TravelCoreProject.CQRS.Handlers.DestinationHandlers;
 using TravelCoreProject.Models;
 
 namespace TravelCoreProject
@@ -26,6 +27,7 @@ namespace TravelCoreProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<GetAllDestinationHandler>();
             services.AddLogging(x => {
 
                 x.ClearProviders();
