@@ -28,6 +28,10 @@ namespace TravelCoreProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<GetAllDestinationHandler>();
+            services.AddScoped<GetDestinationByIdHandle>();
+            services.AddScoped<CreateDestiantionCommandHandler>();
+            services.AddScoped<RemoveDestinationCommandHandler>();
+            services.AddScoped<UpdateDestinationCommandHandle>();
             services.AddLogging(x => {
 
                 x.ClearProviders();
