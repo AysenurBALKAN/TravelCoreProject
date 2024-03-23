@@ -1,4 +1,5 @@
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,6 +33,8 @@ namespace TravelCoreProject
             services.AddScoped<CreateDestiantionCommandHandler>();
             services.AddScoped<RemoveDestinationCommandHandler>();
             services.AddScoped<UpdateDestinationCommandHandle>();
+
+            services.AddMediatR(typeof(Startup));
             services.AddLogging(x => {
 
                 x.ClearProviders();
