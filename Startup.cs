@@ -33,6 +33,7 @@ namespace TravelCoreProject
             services.AddScoped<CreateDestiantionCommandHandler>();
             services.AddScoped<RemoveDestinationCommandHandler>();
             services.AddScoped<UpdateDestinationCommandHandle>();
+          
 
             services.AddMediatR(typeof(Startup));
             services.AddLogging(x => {
